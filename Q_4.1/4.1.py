@@ -42,13 +42,24 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
     return y
 
 lowcut = 2000.0
-highcut = 7000.0
+highcut = 4000.0
 
 audio_filtrado = butter_bandpass_filter(audio, lowcut, highcut, sr, order=6)
 visualizar_audio(audio_filtrado, "audio_filtrado")
 librosa.output.write_wav('audio_filtrado.wav', audio_filtrado, sr)
 
+# Segunda ideia, tentar remover o ruido diretamente do sinal
+audio_suprimido = np.power(audio, 2)
+threshold =  0.01
+# print(len(audio_suprimido))
+for i in range(len(audio_suprimido)):
+    if audio_suprimido[i] < threshold:
+        audio_suprimido[i] = 0
+    
+audio_suprimido = np.power(audio_suprimido , 1/2)
 
+visualizar_audio(audio_suprimido, "audio_suprimido")
+librosa.output.write_wav('audio_suprimido.wav', audio_suprimido, sr)
 # https://dsp.stackexchange.com/questions/55768/remove-background-noise-from-audio-file-python-or-matlab
 # 
 # https://www.mathworks.com/help/matlab/ref/fft.html#buuutyt-9

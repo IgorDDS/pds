@@ -33,7 +33,8 @@ M = int(np.ceil(((As - 7.95)/(14.36*delta_W/(2*np.pi))+1)) + 1)
 
 # Essa função projeta o filtro com a janela especificada
 # Para o caso da janela de kaiser é preciso informar beta
-filtro = signal.firwin(M, Wc/np.pi, window=('kaiser', beta))
+filtro = signal.firwin(M, Wc/np.pi, window=('kaiser', beta) , pass_zero = 'highpass')
+
 fig = plt.figure(1)
 plt.stem(filtro)
 fig.savefig('filtro.png')

@@ -16,14 +16,14 @@ proximo_frame_gray = rgb2gray(proximo_frame_rgb)
             if abs(frame_atual_gray(i,j) - proximo_frame_gray(i,j)) > threshold
                 video_final(i,j,f) = frame_atual_gray(i,j);
             else
-                video_final(i,j) = 0;
+                video_final(i,j,f) = 0;
             end
         end
     end
 frame_atual_gray = proximo_frame_gray;
 end
 
-%tendo problemas com o formato do video atual que é double, tentar passar
+%tendo problemas com o formato do video atual que ï¿½ double, tentar passar
 %pra uint8
 
 video_final_uint8 = im2uint8(video_final)

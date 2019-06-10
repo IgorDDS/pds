@@ -52,6 +52,7 @@ for i in range(len(audio)):
     audio_com_eco[i] += audio[i]
 
 librosa.output.write_wav('audio_com_eco.wav', audio_com_eco, sr)
+visualizar_audio(audio_com_eco , 'audio_com_eco')
 
 # Definindo a função de transferencia
 num = [1] # numeradorda função de transferencia
